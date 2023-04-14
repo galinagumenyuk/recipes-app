@@ -8,14 +8,14 @@
 <title>Document</title>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@400;500;700;900&display=swap"
     rel="stylesheet">
-<link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
 <form class="registration-form">
     <h2 class="form-title">Реєстрація</h2>
     <div class="form-group">
-        <label for="username" class="form-label">Ім'я:</label>
+        <label for="username" class="form-label">Ім'я: <span class="span-name hidden">Має бути більше 3 символів та менше 20 </span></label>
         <input type="text" id="username" name="username" required class="form-input">
     </div>
     <div class="form-group">
@@ -26,8 +26,10 @@
         <label for="password" class="form-label">Пароль:</label>
         <input type="password" id="password" name="password" minlength="6" required class="form-input">
     </div>
-    <button type="submit" class="form-btn">Зареєструватися</button>
+    <button type="submit" class="form-btn" disabled>Зареєструватися</button>
 </form>
+
+<script src="./js/index.js" type="module"></script>
 </body>
 
 </html>
