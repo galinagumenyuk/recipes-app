@@ -94,7 +94,7 @@ img {
 .nav-item:focus,
 .logo:focus,
 .logo:hover {
-    color: rgb(167, 202, 216);
+    color: rgb(161, 240, 240);
 }
 
 .overlay {
@@ -175,4 +175,102 @@ img {
 
 .set-img {
     height: 330px;
+}
+
+/* Форма */
+.registration-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+}
+
+.form-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.form-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #3c3d3d;
+    cursor: pointer;
+}
+
+.form-btn:hover {
+    background-color: #6e7071;
+}
+
+/* Адаптивна для основної сторінки*/
+
+@media screen and (max-width: 420px) {
+    .container {
+        max-width: 420px;
+    }
+
+    .main-nav {
+        justify-content: space-around;
+    }
+
+    .logo {
+        font-weight: 500;
+        font-size: 13px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .nav-list {
+        flex-direction: column;
+    }
+
+    .nav-item {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 1.12;
+    }
+
+    .overlay {
+        width: 420px;
+
+        padding-top: 40px;
+        padding-bottom: 40px;
+        margin-top: 10px;
+    }
+
+    .hero-title {
+        margin-top: 50px;
+        font-weight: 500;
+        font-size: 36px;
+        line-height: 1.2;
+        width: 320px;
+    }
 }
