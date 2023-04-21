@@ -15,7 +15,7 @@
 <form class="registration-form">
     <h2 class="form-title">Реєстрація</h2>
     <div class="form-group">
-        <label for="username" class="form-label">Ім'я: <span class="span-name hidden">Має бути більше 3 символів та менше 20 </span></label>
+        <label for="username" class="form-label">Ім'я: <span class="span-name hidden">Введіть від 3 до 20 символів </span></label>
         <input type="text" id="username" name="username" required class="form-input">
     </div>
     <div class="form-group">
@@ -23,7 +23,7 @@
         <input type="email" id="email" name="email" required class="form-input">
     </div>
     <div class="form-group">
-        <label for="password" class="form-label">Пароль:</label>
+        <label for="password" class="form-label">Пароль: <span class="span-password hidden">Пароль має бути довше 6 символів</span> </label>
         <input type="password" id="password" name="password" minlength="6" required class="form-input">
     </div>
     <button type="submit" class="form-btn" disabled>Зареєструватися</button>

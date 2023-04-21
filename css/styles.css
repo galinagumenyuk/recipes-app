@@ -241,7 +241,8 @@ button:disabled {
     background-color: #6e7071;
 }
 
-.span-name {
+.span-name,
+.span-password {
     width: 10px;
     color: #db1111;
 }
