@@ -54,11 +54,12 @@ const Recipes = () => {
              <button type='submit' onClick={handleClick} className={s.button}>Search</button>
 
              {<ul className={s.list}>
-                 {recipes && recipes.recipes && recipes.recipes.map(recipe => <li key={recipe.id} className={s.item}>
+                 {recipes && recipes.recipes ? recipes.recipes.map(recipe => <li key={recipe.id} className={s.item}>
                      <Link to={`/recipes/${recipe.id}`}  className={s.link}
                     state={{ from: location }}> {recipe.title} <img src={recipe.image} alt="img"></img></Link>
-            </li>) }
-        </ul>}
+            </li>) : <h3 className={s.error}> Sorry! Something went wrong...</h3>}
+             </ul>}
+            
         </>
     )
 }

@@ -3,7 +3,8 @@ import s from "./Home.module.css"
 const Home = () => { 
     return (
         <div className={s.overlay}>
-            <h1 className={s.title}>Кулінарні ідеї для кожного дня</h1>
+            <h1 className={s.title}>
+Сulinary ideas for every day</h1>
         </div>
     )
 }
