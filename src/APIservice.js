@@ -1,4 +1,4 @@
-const key = "f95d9195e7114ffc9be334209a52d0bb";
+// const key = "f95d9195e7114ffc9be334209a52d0bb";
 
 export function fetchRandomRecipes() {
   return fetch(
