@@ -13,11 +13,33 @@ export function fetchRandomRecipes() {
 
 export function fetchRecipeByKeyWord(query) {
   return fetch(
-    `https://api.spoonacular.com/recipes/complexSearch?query=${query}&maxFat=25&number=6&apiKey=f95d9195e7114ffc9be334209a52d0bb`
+    `https://api.spoonacular.com/recipes/complexSearch?query=${query}&maxFat=25&number=9&apiKey=f95d9195e7114ffc9be334209a52d0bb`
   ).then((res) =>
     res.json().then((data) => {
       console.log("search [" + query + "]:", data.results);
       return data.results;
     })
   );
+}
+
+export function fetchRecipeDetails(recipeID) {
+  return fetch(
+    `https://api.spoonacular.com/recipes/${recipeID}/analyzedInstructions?&apiKey=f95d9195e7114ffc9be334209a52d0bb`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      return data;
+    });
+}
+
+export function fetchIngredients(recipeID) {
+  return fetch(
+    `https://api.spoonacular.com/recipes/${recipeID}/ingredientWidget.json?&apiKey=f95d9195e7114ffc9be334209a52d0bb`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      return data;
+    });
 }

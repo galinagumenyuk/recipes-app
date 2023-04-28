@@ -30,13 +30,14 @@ const Recipes = () => {
 
 
     const handleNameChange = (e) => {
-        setInputText(e.currentTarget.value.toLowerCase())
+        setInputText(e.currentTarget.value.toLowerCase());
     };  
     
     const handleClick = (e) => {
         e.preventDefault();
         setQuery(inputText); 
         navigate({ ...location, search: `query=${inputText}` });
+        
     }
     
 
