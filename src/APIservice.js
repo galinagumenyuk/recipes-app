@@ -1,5 +1,3 @@
-// const key = "f95d9195e7114ffc9be334209a52d0bb";
-
 export function fetchRandomRecipes() {
   return fetch(
     "https://api.spoonacular.com/recipes/random?number=9&apiKey=f95d9195e7114ffc9be334209a52d0bb&tags=vegetarian,dessert"
@@ -33,13 +31,13 @@ export function fetchRecipeDetails(recipeID) {
     });
 }
 
-export function fetchIngredients(recipeID) {
+export function fetchRecipeByID(recipeID) {
   return fetch(
-    `https://api.spoonacular.com/recipes/${recipeID}/ingredientWidget.json?&apiKey=f95d9195e7114ffc9be334209a52d0bb`
+    ` https://api.spoonacular.com/recipes/${recipeID}/information?&apiKey=f95d9195e7114ffc9be334209a52d0bb`
   )
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      console.log("recipe details", data);
       return data;
     });
 }

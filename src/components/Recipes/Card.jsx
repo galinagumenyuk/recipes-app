@@ -10,30 +10,36 @@ const Card = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [recipe, setRecipe] = useState(null);
-    const [ingredients, setIngredients] = useState(null);
+    const [byID, setByID] = useState(null);
 
     useEffect(() => {
         apiService.fetchRecipeDetails(recipeId)
             .then(setRecipe);
-        apiService.fetchIngredients(recipeId)
-            .then(setIngredients);
+        apiService.fetchRecipeByID(recipeId)
+            .then(setByID);
     }, [recipeId]);
     
     const onGoBack = () => {
         (location.state && location.state.from) ? navigate(location.state.from) : navigate("/");
-     };
+    };
+   
 
     return (
         <>
             <button type="button" onClick={onGoBack} className={ s.button}>Back</button>
             {recipe && <article className={s.container}>
-            <h2 className={s.title}>Ingredients:</h2>
-                {ingredients.ingredients.map(ingredient =>
-                    <li key={ingredient.name} className={s.item}>
-                        {ingredient.name} - {ingredient.amount.metric.value} {ingredient.amount.metric.unit}
+                {byID && <h1 className={s.mainTitle}>{byID.title}</h1>}
+                <h2 className={s.title}>Ingredients:</h2>
+                {byID && byID.extendedIngredients.map(ingredient =>
+                    <li key={ingredient.id} className={s.item}>
+                        {ingredient.name} - {ingredient.measures.us.amount} {ingredient.measures.us.unitShort}
                     </li>)}
-            <h2 className={s.title}>How to cook:</h2>
-            {recipe[0].steps.map(step => <li key={step.number} className={s.item}>{step.step}</li>)}
+                <h2 className={s.title}>How to cook:</h2>
+                {recipe[0].steps.map(step => <li key={step.number} className={s.item}>{step.step}</li>)}
+                <div className={s.wrapper}>
+                    <p className={s.label}>Add recipe to your library</p>
+                    <button type="button" className={s.addBtn}>+</button>
+                </div>
             </article>}
             
         </>    
