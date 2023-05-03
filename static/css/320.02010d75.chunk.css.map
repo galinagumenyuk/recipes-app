@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/320.02010d75.chunk.css","mappings":"AAAA,uBACI,aAAgB,CAEhB,cAAe,CADf,gBAEJ","sources":["components/UserPage/UserPage.module.css"],"sourcesContent":[".title {\r\n    color: aliceblue;\r\n    margin-left: 30px;\r\n    font-size: 40px;\r\n}"],"names":[],"sourceRoot":""}

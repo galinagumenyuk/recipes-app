@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkrecipes_app=self.webpackChunkrecipes_app||[]).push([[433],{11:function(e,r,a){a.r(r),a.d(r,{default:function(){return c}});var n="Home_overlay__WNXBb",s="Home_title__NSnij",i=a(184),c=function(){return(0,i.jsx)("div",{className:n,children:(0,i.jsx)("h1",{className:s,children:"\u0421ulinary ideas for every day"})})}}}]);
+//# sourceMappingURL=433.1948cd10.chunk.js.map
