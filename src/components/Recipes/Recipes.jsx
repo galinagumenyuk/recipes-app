@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import * as apiService from "../../APIservice";
-import { Link, useLocation, useNavigate} from "react-router-dom";
+import { Link, useLocation, useNavigate, useSearchParams} from "react-router-dom";
  import s from "./Recipes.module.css"
 
 
@@ -12,12 +12,14 @@ const Recipes = () => {
     const [query, setQuery] = useState("");
     const location = useLocation();
     const navigate = useNavigate();
-   
+    const [searchParams] = useSearchParams();
 
+    const search = searchParams.get("query");
 
     useEffect(() => {
+        if (search) { return; }
         apiService.fetchRandomRecipes().then(setRecipes);
-    }, []);
+    }, [search]);
 
     useEffect(() => {
         if (query.trim() === "") {
@@ -26,6 +28,12 @@ const Recipes = () => {
         apiService.fetchRecipeByKeyWord(query)
             .then(setRecipes);
     }, [query]);
+
+     useEffect(() => {
+        if (search === null) { return;}
+        apiService.fetchRecipeByKeyWord(search)
+            .then(setRecipes);
+    }, [search])
 
 
 
@@ -56,7 +64,8 @@ const Recipes = () => {
                  {recipes ? recipes.map(recipe => <li key={recipe.id} className={s.item}>
                      <Link to={`/recipes/${recipe.id}`}  className={s.link}
                     state={{ from: location }}> {recipe.title} <img src={recipe.image} alt="img"></img></Link>
-            </li>) : <h3 className={s.error}> Sorry! Something went wrong...</h3>}
+                 </li>) : <h3 className={s.error}> Sorry! Something went wrong...</h3>}
+                 {recipes.length === 0 && <p className={s.alert}>Nothing was find...</p>}
              </ul>}
             
         </>

@@ -29,6 +29,7 @@ const SignUp = () => {
     const onHandleSubmit = (e) => { 
       e.preventDefault();
     //   dispatch(authOperations.register({ name, email, password }));
+      console.log(name, email, password);
       setEmail('');
       setPassword('');
       setName('');
