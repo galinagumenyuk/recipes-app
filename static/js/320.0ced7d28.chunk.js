@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkrecipes_app=self.webpackChunkrecipes_app||[]).push([[320],{320:function(e,r,n){n.r(r),n.d(r,{default:function(){return c}});var s="UserPage_title__Oa5OJ",a=n(184),c=function(){return(0,a.jsx)("div",{children:(0,a.jsx)("h2",{className:s,children:"My library"})})}}}]);
-//# sourceMappingURL=320.0ced7d28.chunk.js.map
