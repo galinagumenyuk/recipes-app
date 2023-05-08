@@ -18,6 +18,39 @@ const Card = () => {
         apiService.fetchRecipeByID(recipeId)
             .then(setByID);
     }, [recipeId]);
+
+    // ----
+
+    const handleOnClick = () => {
+        const formData = {
+            id: byID.id,
+            title: byID.title,
+            ingredients: byID.extendedIngredients,
+            steps: recipe[0].steps
+    };
+
+    fetch("http://localhost:8800/recipes", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((responseData) => {
+        alert("Added")
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+    
+    // ----
     
     const onGoBack = () => {
         (location.state && location.state.from) ? navigate(location.state.from) : navigate("/");
@@ -38,7 +71,7 @@ const Card = () => {
                 {recipe[0].steps.map(step => <li key={step.number} className={s.item}>{step.step}</li>)}
                 <div className={s.wrapper}>
                     <p className={s.label}>Add recipe to your library</p>
-                    <button type="button" className={s.addBtn}>+</button>
+                    <button type="button" onClick={handleOnClick} className={s.addBtn}>+</button>
                 </div>
             </article>}
             

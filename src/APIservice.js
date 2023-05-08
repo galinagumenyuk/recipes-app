@@ -41,3 +41,12 @@ export function fetchRecipeByID(recipeID) {
       return data;
     });
 }
+
+export function getUserRecipes() {
+  return fetch("http://localhost:8800/recipes")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("userRecipes", data);
+      return data;
+    });
+}
