@@ -25,6 +25,7 @@ const Login = () => {
     const onHandleSubmit = (e) => { 
       e.preventDefault();
     //    dispatch(authOperations.login({ email, password }));
+      console.log(email, password);
       setEmail('');
       setPassword('');
     }
