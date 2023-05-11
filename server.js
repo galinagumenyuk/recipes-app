@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
+const uuid = require("uuid");
 
 app.use(cors());
 app.use(express.json());
@@ -65,6 +67,72 @@ app.delete("/recipes/:id", (req, res) => {
       }
       return res.send("Deleted");
     });
+  });
+});
+
+//перевірка всіх юзерів
+function getUsersFromFile() {
+  try {
+    const data = fs.readFileSync("./server/users.json");
+    return JSON.parse(data);
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+}
+
+// регістрація
+app.post("/signup", (req, res) => {
+  const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    return res.send("Please provide username, email and password");
+  }
+
+  const users = getUsersFromFile();
+  const user = users.find((user) => user.name === name);
+
+  if (user) {
+    return res.send("Username is already taken");
+  }
+
+  bcrypt.hash(password, 10, (err, hash) => {
+    if (err) {
+      return res.send("Error hashing password");
+    }
+
+    const newUser = { id: uuid.v4(), name, email, password: hash };
+    users.push(newUser);
+    fs.writeFileSync("./server/users.json", JSON.stringify(users));
+    console.log(newUser);
+  });
+});
+
+// логін
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.send("Please provide email and password");
+  }
+
+  const users = getUsersFromFile();
+  const user = users.find((user) => user.email === email);
+
+  if (!user) {
+    return res.send("Invalid email or password");
+  }
+
+  bcrypt.compare(password, user.password, (err, result) => {
+    if (err) {
+      return res.send("Error comparing passwords");
+    }
+
+    if (result) {
+      console.log("welcome", user.name);
+    }
+
+    res.send("Invalid email or password");
   });
 });
 

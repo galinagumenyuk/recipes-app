@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "qwe",
+        "email": "qweqwe@gmail.com",
+        "password": "111111"
+    },
+    {
+        "id": "741c345f-974b-470d-96b3-482f9ce714cb",
+        "name": "panda",
+        "email": "rrrr@gmail.com",
+        "password": "$2b$10$fA/7bZBZ9zVHGl538vSJleIvy2P1ntC5fAI3AsaJeLzeSoYM4f32e"
+    }
+]
