@@ -113,26 +113,26 @@ app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.send("Please provide email and password");
+    return res.status(401).send("Please provide email and password");
   }
 
   const users = getUsersFromFile();
   const user = users.find((user) => user.email === email);
 
   if (!user) {
-    return res.send("Invalid email or password");
+    return res.status(401).send({ message: "Invalid email or password" });
   }
 
   bcrypt.compare(password, user.password, (err, result) => {
     if (err) {
-      return res.send("Error comparing passwords");
+      return res.status(401).send({ message: "Error comparing passwords" });
     }
 
     if (result) {
-      console.log("welcome", user.name);
+      return res.status(200).send({ message: `Welcome ${user.name}` });
     }
 
-    res.send("Invalid email or password");
+    res.status(404).send({ message: "Invalid email or password" });
   });
 });
 

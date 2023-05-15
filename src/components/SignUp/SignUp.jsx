@@ -41,7 +41,7 @@ const SignUp = () => {
       
       setTimeout(() => {
       navigate('/recipes');
-    }, 2500);
+    }, 1500);
       setMessage('');
       setEmail('');
       setPassword('');
@@ -78,6 +78,7 @@ const SignUp = () => {
           name="password"
           required
           value={password}
+          minLength={4}
           onChange={handleChange}
           placeholder="Password"
           className={s.input}

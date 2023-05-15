@@ -1,13 +1,15 @@
 import React from "react";
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import authOperations from "../../redux/authOperations";
+import { useNavigate } from 'react-router-dom'
 import s from "./Login.module.css"
 
 const Login = () => { 
-//   const dispatch = useDispatch();
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState('');
+
+
+  const navigate = useNavigate()
 
     const handleChange = (e) => {
         switch (e.target.name) {
@@ -24,8 +26,27 @@ const Login = () => {
 
     const onHandleSubmit = (e) => { 
       e.preventDefault();
-    //    dispatch(authOperations.login({ email, password }));
-      console.log(email, password);
+    
+      fetch('http://localhost:8800/login', {
+        method: 'POST',
+        body: JSON.stringify({ password, email }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+        .then(response => {
+          if (response.status !== 200) {
+            throw new Error('User name or password are incorrect');
+          } else {
+            return response.json();
+          }
+         })
+        .then(data => setMessage(data.message))
+        .then(data => {
+                  setTimeout(() => {
+        navigate('/recipes');
+        }, 1000);
+        })
+        .catch(error => setMessage(error.message))
+
       setEmail('');
       setPassword('');
     }
@@ -53,6 +74,7 @@ const Login = () => {
           className={s.input}
         />
         <button type="submit" className={s.button}>Log In</button>
+        {message && <p className={s.message}>{message}</p>}
       </form>
   );
 }
