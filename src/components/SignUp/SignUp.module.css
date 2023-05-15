@@ -71,3 +71,9 @@
     font-family: "Playfair Display", serif;
     color: aliceblue;
 }
+
+.message {
+    color: rgb(232, 234, 125);
+    font-size: 30px;
+    text-align: center;
+}

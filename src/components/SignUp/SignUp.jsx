@@ -1,14 +1,16 @@
 import React from "react";
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import authOperations from "../../redux/authOperations";
+import { useNavigate } from 'react-router-dom'
 import s from "./SignUp.module.css"
 
 const SignUp = () => { 
-    // const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState('');
+  const [message, setMessage] = useState('');
+
+  const navigate = useNavigate()
+  
 
     const handleChange = (e) => {
         switch (e.target.name) {
@@ -26,14 +28,27 @@ const SignUp = () => {
         }
     };
 
-    const onHandleSubmit = (e) => { 
+    const onHandleSubmit = async (e) => { 
       e.preventDefault();
-    //   dispatch(authOperations.register({ name, email, password }));
-      console.log(name, email, password);
+      fetch('http://localhost:8800/signup', {
+        method: 'POST',
+        body: JSON.stringify({name, password, email}),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(response => response.json())
+      .then(data => setMessage(data.message))
+      .catch(error => console.error(error))
+      
+      setTimeout(() => {
+      navigate('/recipes');
+    }, 2500);
+      setMessage('');
       setEmail('');
       setPassword('');
       setName('');
-    }
+    };
+     
+   
   
     return (
       <form onSubmit={onHandleSubmit} className={s.form}>
@@ -59,7 +74,7 @@ const SignUp = () => {
           className={s.input}
         />
         <input
-          type="text"
+          type="password"
           name="password"
           required
           value={password}
@@ -67,7 +82,8 @@ const SignUp = () => {
           placeholder="Password"
           className={s.input}
         />
-     <button type="submit" className={s.button}>Sign Up</button>
+        <button type="submit" className={s.button}>Sign Up</button>
+        {message && <p className={s.message}>{message}</p>}
       </form> 
   );
 }

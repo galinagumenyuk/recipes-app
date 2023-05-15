@@ -90,10 +90,10 @@ app.post("/signup", (req, res) => {
   }
 
   const users = getUsersFromFile();
-  const user = users.find((user) => user.name === name);
+  const user = users.find((user) => user.email === email);
 
   if (user) {
-    return res.send("Username is already taken");
+    return res.send("This email is already taken");
   }
 
   bcrypt.hash(password, 10, (err, hash) => {
@@ -104,7 +104,7 @@ app.post("/signup", (req, res) => {
     const newUser = { id: uuid.v4(), name, email, password: hash };
     users.push(newUser);
     fs.writeFileSync("./server/users.json", JSON.stringify(users));
-    console.log(newUser);
+    return res.status(200).send({ message: `Welcome ${newUser.name}` });
   });
 });
 
